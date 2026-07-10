@@ -3,15 +3,16 @@ package com.farmacia.msinventario.controller;
 import com.farmacia.msinventario.dto.stock.ActualizarStockDTO;
 import com.farmacia.msinventario.dto.request.InventarioRequestDTO;
 import com.farmacia.msinventario.dto.response.InventarioResponseDTO;
+
 import com.farmacia.msinventario.service.interfaces.InventarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+ import java.util.List;
 
-        import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/inventarios")
@@ -49,16 +50,6 @@ public class InventarioController {
         );
     }
 
-    @GetMapping("/")
-    public ResponseEntity<?> inicio() {
-        return ResponseEntity.ok(
-                Map.of(
-                        "servicio", "msinventario",
-                        "estado", "activo",
-                        "mensaje", "Microservicio de inventario funcionando correctamente"
-                )
-        );
-    }
 
     @PostMapping("/reducciones")
     public ResponseEntity<Void> descontar(
