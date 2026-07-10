@@ -1,0 +1,35 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: msinventario
+
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+springdoc:
+  api-docs:
+    enabled: true
+
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+
+logging:
+  level:
+    root: INFO
+    com.farmacia.msinventario: DEBUG
+    org.hibernate.SQL: DEBUG
