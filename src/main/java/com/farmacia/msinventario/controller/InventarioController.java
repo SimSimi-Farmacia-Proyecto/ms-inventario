@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
         import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/inventarios")
@@ -45,6 +46,17 @@ public class InventarioController {
 
         return ResponseEntity.ok(
                 service.listarInventario()
+        );
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<?> inicio() {
+        return ResponseEntity.ok(
+                Map.of(
+                        "servicio", "msinventario",
+                        "estado", "activo",
+                        "mensaje", "Microservicio de inventario funcionando correctamente"
+                )
         );
     }
 
