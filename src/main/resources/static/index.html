@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MS Inventario - Farmacia</title>
+    <title>MS Inventario - Farmacia SimSimi</title>
 
     <style>
         body {
@@ -36,7 +36,12 @@
             color: #16a34a;
             font-weight: bold;
             font-size: 18px;
-            margin: 20px;
+            margin: 20px 0;
+        }
+
+        .description {
+            color: #334155;
+            line-height: 1.6;
         }
 
         .card {
@@ -44,22 +49,52 @@
             padding: 20px;
             border-radius: 10px;
             text-align: left;
-            margin-top: 20px;
+            margin-top: 25px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #1e3a8a;
+        }
+
+        .card p {
+            margin: 10px 0;
+        }
+
+        .card a {
+            color: #2563eb;
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 25px;
         }
 
         .btn {
             display: inline-block;
-            margin: 10px;
             padding: 12px 25px;
             border-radius: 8px;
             text-decoration: none;
             color: white;
             background: #2563eb;
-            transition: 0.3s;
+            transition: all .3s ease;
+            font-weight: bold;
         }
 
         .btn:hover {
             background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(37,99,235,.25);
         }
 
         .btn.green {
@@ -68,12 +103,14 @@
 
         .btn.green:hover {
             background: #15803d;
+            box-shadow: 0 6px 15px rgba(22,163,74,.25);
         }
 
         footer {
-            margin-top: 25px;
+            margin-top: 35px;
             font-size: 13px;
             color: #64748b;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -88,44 +125,55 @@
         ● Servicio activo correctamente
     </p>
 
-    <p>
-        Microservicio encargado de la gestión y control
-        del stock de medicamentos.
+    <p class="description">
+        Bienvenido al microservicio <strong>MS Inventario</strong>, responsable de la gestión y control del stock de medicamentos del sistema <strong>Farmacia SimSimi</strong>.
     </p>
-
 
     <div class="card">
 
-        <h3>Información del servicio</h3>
+        <h3>📋 Información del servicio</h3>
 
-        <p><b>Nombre:</b> msinventario</p>
+        <p><strong>Nombre:</strong> msinventario</p>
 
-        <p><b>Estado:</b> Online</p>
+        <p><strong>Estado:</strong> Online</p>
 
-        <p><b>Base de datos:</b> PostgreSQL</p>
+        <p><strong>Base de datos:</strong> PostgreSQL</p>
 
-        <p><b>Despliegue:</b> Render + Docker</p>
+        <p><strong>Despliegue:</strong> Render + Docker</p>
 
-        <p><b>Framework:</b> Spring Boot</p>
+        <p><strong>Framework:</strong> Spring Boot</p>
+
+        <p>
+            <strong>URL:</strong>
+            <a href="https://ms-inventario-4c5o.onrender.com" target="_blank">
+                https://ms-inventario-4c5o.onrender.com
+            </a>
+        </p>
 
     </div>
 
+    <h3>🚀 Accesos rápidos</h3>
 
-    <h3>Accesos</h3>
+    <div class="btn-group">
 
-    <a class="btn" href="/swagger-ui/index.html">
-        📘 Swagger UI
-    </a>
+        <a class="btn" href="/swagger-ui/index.html">
+            📘 Swagger UI
+        </a>
 
-    <a class="btn green" href="/api/v1/inventarios">
-        📦 Ver Inventario
-    </a>
+        <a class="btn green" href="/inventario">
+            📦 Ver Inventario
+        </a>
 
+        <a class="btn" href="/v3/api-docs">
+            📄 OpenAPI JSON
+        </a>
+
+    </div>
 
     <footer>
-        Farmacia SimSimi - Microservicio Inventario
+        <strong>Farmacia SimSimi</strong><br>
+        Microservicio Inventario • Spring Boot • PostgreSQL • Docker • Render
     </footer>
-
 
 </div>
 
