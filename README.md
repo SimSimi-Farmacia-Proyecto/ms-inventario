@@ -13,14 +13,15 @@ El proyecto permite administrar clientes, medicamentos, ventas, pagos, recetas, 
 Sus principales responsabilidades son:
 
 - Registrar inventario de medicamentos.
-- Consultar stock disponible.
+- Consultar inventario y stock disponible.
 - Buscar inventario asociado a un medicamento.
-- Actualizar cantidades mediante reducción de stock.
+- Actualizar información del inventario.
+- Reducir stock de medicamentos.
+- Eliminar registros de inventario cuando sea necesario.
 - Validar operaciones para evitar cantidades inválidas.
-- Manejar errores mediante excepciones personalizadas.
 - Exponer una API REST documentada mediante Swagger.
+- Manejar errores mediante excepciones personalizadas.
 - Ejecutarse como servicio independiente desplegado en la nube.
-
 ---
 
 # 🏗️ Arquitectura general del sistema
@@ -334,10 +335,9 @@ Disponible en:
 Incluye:
 
 - Modelos DTO.
-- Métodos HTTP disponibles.
+- Métodos HTTP disponibles (GET, POST, PUT y DELETE).
 - Ejemplos de solicitudes.
 - Respuestas esperadas.
-
 ---
 
 # 🔌 Endpoints disponibles
