@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>MS Inventario - Farmacia SimSimi</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            background:#f4f7fb;
+            padding:40px;
+        }
+
+        .card{
+            background:white;
+            border-radius:15px;
+            padding:30px;
+            box-shadow:0 5px 15px #ccc;
+        }
+
+        h1{
+            color:#2563eb;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:20px;
+        }
+
+        th{
+            background:#2563eb;
+            color:white;
+            padding:12px;
+        }
+
+        td{
+            padding:12px;
+            border-bottom:1px solid #ddd;
+        }
+
+        .badge{
+            background:#22c55e;
+            color:white;
+            padding:5px 10px;
+            border-radius:20px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>💊 MS Inventario</h1>
+
+    <p>
+        Servicio de gestión de stock de medicamentos
+    </p>
+
+    <h2>
+        Estado:
+        <span class="badge">
+Online
+</span>
+    </h2>
+
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Medicamento</th>
+            <th>Cantidad</th>
+            <th>Actualizado</th>
+        </tr>
+
+
+        <tr th:each="item : ${inventarios}">
+
+            <td th:text="${item.id}"></td>
+
+            <td th:text="${item.medicamentoId}"></td>
+
+            <td th:text="${item.cantidad}"></td>
+
+            <td th:text="${item.actualizadoEn}"></td>
+
+        </tr>
+
+
+    </table>
+
+</div>
+
+
+</body>
+</html>

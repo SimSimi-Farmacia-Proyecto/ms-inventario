@@ -12,12 +12,14 @@ El proyecto permite administrar clientes, medicamentos, ventas, pagos, recetas, 
 
 Sus principales responsabilidades son:
 
-* Registrar inventario de medicamentos.
-* Consultar stock disponible.
-* Buscar inventario asociado a un medicamento.
-* Actualizar cantidades mediante reducción de stock.
-* Validar operaciones para evitar cantidades inválidas.
-* Exponer una API REST documentada mediante Swagger.
+- Registrar inventario de medicamentos.
+- Consultar stock disponible.
+- Buscar inventario asociado a un medicamento.
+- Actualizar cantidades mediante reducción de stock.
+- Validar operaciones para evitar cantidades inválidas.
+- Manejar errores mediante excepciones personalizadas.
+- Exponer una API REST documentada mediante Swagger.
+- Ejecutarse como servicio independiente desplegado en la nube.
 
 ---
 
@@ -27,11 +29,11 @@ El sistema Farmacia-SimSimi está compuesto por múltiples microservicios indepe
 
 Cada microservicio posee:
 
-* Su propia lógica de negocio.
-* Sus propios controladores.
-* Sus servicios.
-* Sus repositorios.
-* Su propia persistencia.
+- Su propia lógica de negocio.
+- Sus propios controladores.
+- Sus servicios.
+- Sus repositorios.
+- Su propia persistencia.
 
 El microservicio `msinventario` funciona de manera independiente y puede comunicarse con otros servicios del sistema mediante APIs REST.
 
@@ -61,20 +63,20 @@ Arquitectura general:
 
 # ⚙️ Tecnologías utilizadas
 
-| Tecnología         | Uso                            |
-| ------------------ | ------------------------------ |
-| Java 21            | Lenguaje principal             |
-| Spring Boot 3.5.16 | Framework backend              |
-| Spring Web         | Desarrollo API REST            |
-| Spring Data JPA    | Persistencia de datos          |
-| Hibernate          | ORM                            |
-| PostgreSQL         | Base de datos                  |
-| Lombok             | Reducción de código repetitivo |
-| Jakarta Validation | Validación de datos            |
-| SpringDoc OpenAPI  | Documentación Swagger          |
-| Maven              | Gestión de dependencias        |
-| Docker             | Contenedorización              |
-| Render             | Despliegue cloud               |
+| Tecnología | Uso |
+|---|---|
+| Java 21 | Lenguaje principal |
+| Spring Boot 3.5.16 | Framework backend |
+| Spring Web | Desarrollo API REST |
+| Spring Data JPA | Persistencia de datos |
+| Hibernate | ORM |
+| PostgreSQL | Base de datos principal |
+| Lombok | Reducción de código repetitivo |
+| Jakarta Validation | Validación de datos |
+| SpringDoc OpenAPI | Documentación Swagger |
+| Maven | Gestión de dependencias |
+| Docker | Contenedorización |
+| Render | Despliegue cloud |
 
 ---
 
@@ -162,18 +164,19 @@ Inventario
 
 Campos:
 
-| Campo         | Tipo          | Descripción                   |
-| ------------- | ------------- | ----------------------------- |
-| id            | Long          | Identificador del inventario  |
-| medicamentoId | Long          | Identificador del medicamento |
-| cantidad      | Integer       | Stock disponible              |
-| actualizadoEn | LocalDateTime | Última actualización          |
+| Campo | Tipo | Descripción |
+|---|---|---|
+| id | Long | Identificador del inventario |
+| medicamentoId | Long | Identificador del medicamento |
+| cantidad | Integer | Stock disponible |
+| actualizadoEn | LocalDateTime | Última actualización |
 
 La aplicación utiliza:
 
-* Spring Data JPA
-* Hibernate
-* Relaciones mediante identificadores entre microservicios
+- Spring Data JPA.
+- Hibernate.
+- Persistencia mediante PostgreSQL.
+- Relaciones mediante identificadores entre microservicios.
 
 ---
 
@@ -183,30 +186,16 @@ La aplicación utiliza:
 
 Instalar:
 
-* Java 21
-* Maven
-* PostgreSQL
-* Git
+- Java 21.
+- Maven.
+- PostgreSQL.
+- Git.
 
 También es posible ejecutar mediante Docker.
 
 ---
 
-## Clonar repositorio
-
-```bash
-git clone URL_DEL_REPOSITORIO
-```
-
-Ingresar al proyecto:
-
-```bash
-cd msinventario
-```
-
----
-
-## Configurar variables de entorno
+## Configuración de variables de entorno
 
 Crear:
 
@@ -218,7 +207,7 @@ DB_PASSWORD
 
 Ejemplo:
 
-```env
+```
 DB_URL=jdbc:postgresql://localhost:5432/db_ms_inventario
 DB_USER=postgres
 DB_PASSWORD=password
@@ -230,50 +219,56 @@ DB_PASSWORD=password
 
 Con Maven:
 
-```bash
+```
 ./mvnw spring-boot:run
 ```
 
-La aplicación iniciará en:
+La aplicación utiliza:
 
 ```
-http://localhost:8086
+http://localhost:8080
 ```
 
 ---
 
 # 🐳 Ejecución con Docker
 
-El proyecto utiliza un `Dockerfile` para construir la imagen del microservicio.
+El proyecto utiliza un Dockerfile para construir la imagen del microservicio.
 
 Crear imagen:
 
-```bash
+```
 docker build -t msinventario .
 ```
 
 Ejecutar contenedor:
 
-```bash
-docker run -p 8086:8086 msinventario
+```
+docker run -p 8080:8080 msinventario
 ```
 
 La aplicación quedará disponible en:
 
 ```
-http://localhost:8086
+http://localhost:8080
 ```
 
 ---
 
 # 🌎 Despliegue en Render
 
-El microservicio se encuentra desplegado como Web Service en Render.
-
-Flujo de despliegue:
+El microservicio se encuentra desplegado como:
 
 ```
-GitHub Repository
+Web Service
+```
+
+en Render utilizando Docker.
+
+Arquitectura del despliegue:
+
+```
+Código fuente
 
         |
 
@@ -294,9 +289,17 @@ GitHub Repository
  PostgreSQL Render
 ```
 
+Características del despliegue:
+
+- Servicio independiente.
+- Base de datos PostgreSQL en Render.
+- Variables de entorno configuradas.
+- Puerto dinámico mediante Render.
+- Sin dependencia de Eureka.
+
 ---
 
-## URL producción
+# 🌐 URL Producción
 
 Aplicación:
 
@@ -322,7 +325,7 @@ https://ms-inventario-4c5o.onrender.com/v3/api-docs
 
 Swagger permite probar los endpoints directamente desde el navegador.
 
-Disponible:
+Disponible en:
 
 ```
 /swagger-ui/index.html
@@ -330,10 +333,10 @@ Disponible:
 
 Incluye:
 
-* Modelos DTO.
-* Métodos HTTP disponibles.
-* Ejemplos de solicitudes.
-* Respuestas esperadas.
+- Modelos DTO.
+- Métodos HTTP disponibles.
+- Ejemplos de solicitudes.
+- Respuestas esperadas.
 
 ---
 
@@ -352,7 +355,7 @@ Respuesta ejemplo:
  {
   "id":1,
   "medicamentoId":1,
-  "cantidad":100
+  "cantidad":90
  }
 ]
 ```
@@ -414,10 +417,11 @@ Al iniciar la aplicación se cargan registros de prueba mediante `CommandLineRun
 Datos iniciales:
 
 | ID | Medicamento ID | Cantidad |
-| -- | -------------- | -------- |
-| 1  | 1              | 100      |
-| 2  | 2              | 50       |
-| 3  | 3              | 200      |
+|---|---|---|
+| 1 | 1 | 90 |
+| 2 | 2 | 50 |
+| 3 | 3 | 200 |
+| 4 | 4 | 80 |
 
 ---
 
@@ -425,9 +429,9 @@ Datos iniciales:
 
 El microservicio implementa:
 
-* `@RestControllerAdvice`
-* Excepciones personalizadas.
-* Respuestas HTTP controladas.
+- `@RestControllerAdvice`.
+- Excepciones personalizadas.
+- Respuestas HTTP controladas.
 
 Excepciones:
 
@@ -442,20 +446,22 @@ StockInsuficienteException
 
 Los DTO utilizan Jakarta Validation:
 
-* `@NotNull`
-* `@Min`
+```
+@NotNull
+@Min
+```
 
-Esto permite controlar:
+Permite controlar:
 
-* Datos obligatorios.
-* Cantidades negativas.
-* Solicitudes inválidas.
+- Datos obligatorios.
+- Cantidades negativas.
+- Solicitudes inválidas.
 
 ---
 
 # 📝 Variables de entorno en Render
 
-Configuradas en:
+Configuradas desde:
 
 ```
 Render Dashboard
@@ -464,10 +470,10 @@ Render Dashboard
 
 Variables utilizadas:
 
-| Variable    | Descripción           |
-| ----------- | --------------------- |
-| DB_URL      | URL PostgreSQL        |
-| DB_USER     | Usuario PostgreSQL    |
+| Variable | Descripción |
+|---|---|
+| DB_URL | URL PostgreSQL |
+| DB_USER | Usuario PostgreSQL |
 | DB_PASSWORD | Contraseña PostgreSQL |
 
 ---
