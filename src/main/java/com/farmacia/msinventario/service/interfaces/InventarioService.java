@@ -16,6 +16,10 @@ public interface InventarioService {
 
     List<InventarioResponseDTO> listarInventario();
     void descontarStock(ActualizarStockDTO dto);
+
+    InventarioResponseDTO actualizarInventario(Long id, InventarioRequestDTO dto);
+    void eliminarInventario(Long id);
+
 }
 
 

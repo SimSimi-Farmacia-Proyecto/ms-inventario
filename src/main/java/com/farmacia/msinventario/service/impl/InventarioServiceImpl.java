@@ -98,6 +98,36 @@ public class InventarioServiceImpl implements InventarioService {
 
         log.info("Stock actualizado correctamente");
     }
+
+    @Override
+    public InventarioResponseDTO actualizarInventario(Long id, InventarioRequestDTO dto) {
+
+        Inventario inventario = repository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Inventario no encontrado"));
+
+        inventario.setMedicamentoId(dto.getMedicamentoId());
+        inventario.setCantidad(dto.getCantidad());
+
+        Inventario actualizado = repository.save(inventario);
+
+        log.info("Inventario actualizado ID {}", actualizado.getId());
+
+        return mapper.toDTO(actualizado);
+    }
+
+    @Override
+    public void eliminarInventario(Long id) {
+
+        Inventario inventario = repository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Inventario no encontrado"));
+
+        repository.delete(inventario);
+
+        log.info("Inventario eliminado ID {}", id);
+    }
+
 }
 
 

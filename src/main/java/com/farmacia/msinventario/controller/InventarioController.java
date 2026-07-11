@@ -59,4 +59,23 @@ public class InventarioController {
 
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<InventarioResponseDTO> actualizar(
+            @PathVariable Long id,
+            @Valid @RequestBody InventarioRequestDTO dto) {
+
+        return ResponseEntity.ok(
+                service.actualizarInventario(id, dto)
+        );
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminar(
+            @PathVariable Long id) {
+
+        service.eliminarInventario(id);
+
+        return ResponseEntity.noContent().build();
+    }
 }
