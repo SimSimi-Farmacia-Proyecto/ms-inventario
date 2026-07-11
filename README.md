@@ -488,6 +488,22 @@ Microservicio:
 msinventario
 ```
 
+## 📸 Evidencias del despliegue
+
+### Página principal del microservicio
+
+![Página principal](screenshots/home-msinventario.png)
+
+### Despliegue en Render
+
+![Render](screenshots/render-msinventario.png)
+
+### Documentación Swagger
+
+![Swagger](screenshots/swagger-inventario.png)
+
+
+
 Sistema:
 
 ```
